@@ -47,6 +47,8 @@ abstract class SupabaseBaseService {
     Map<dynamic, dynamic>? requestBody,
     Map<String, dynamic>? filters,
     String? column,
+    String? orderBy,
+    bool ascending = false,
   }) async {
     try {
       final supabase = Supabase.instance.client;
@@ -56,10 +58,15 @@ abstract class SupabaseBaseService {
       switch (requestType) {
         case RequestType.GET:
           if (column != null) {
-            filterBuilder = supabase.from(table).select(column).order('createdAt', ascending: false);
+            filterBuilder = supabase.from(table).select(column);
           } else {
             filterBuilder = supabase.from(table).select();
           }
+
+          if (orderBy != null) {
+            filterBuilder = filterBuilder.order(orderBy, ascending: ascending);
+          }
+
           break;
         case RequestType.POST:
           filterBuilder = supabase.from(table).insert(requestBody as Object);

@@ -14,6 +14,7 @@ class PostService extends SupabaseBaseService {
       requestType: RequestType.GET,
       table: TableName.posts,
       column: '*, likes!left(userId), users(username, profileImageUrl)',
+      orderBy: TableCol.createdAt,
     );
   }
 

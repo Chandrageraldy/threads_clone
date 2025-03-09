@@ -49,4 +49,5 @@ class TableCol {
   static String username = 'username';
   static String bio = 'bio';
   static String link = 'link';
+  static String createdAt = 'createdAt';
 }
