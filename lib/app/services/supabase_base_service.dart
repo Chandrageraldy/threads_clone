@@ -51,12 +51,12 @@ abstract class SupabaseBaseService {
     try {
       final supabase = Supabase.instance.client;
       final PostgrestList? response;
-      PostgrestFilterBuilder? filterBuilder;
+      dynamic filterBuilder;
 
       switch (requestType) {
         case RequestType.GET:
           if (column != null) {
-            filterBuilder = supabase.from(table).select(column);
+            filterBuilder = supabase.from(table).select(column).order('createdAt', ascending: false);
           } else {
             filterBuilder = supabase.from(table).select();
           }

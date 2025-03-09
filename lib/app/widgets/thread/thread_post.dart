@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:threads_clone/app/assets/exporter/exporter_app_general.dart';
 import 'package:threads_clone/app/models/user_profile_model/user_profile_model.dart';
+import 'package:threads_clone/app/utils/extensions/date_extension.dart';
 import 'package:threads_clone/app/utils/mixins/error_handling_mixin.dart';
 import 'package:threads_clone/app/viewmodels/post_vm/post_view_model.dart';
 import 'package:threads_clone/app/widgets/button/app_tapable_button.dart';
@@ -14,6 +15,7 @@ class ThreadPost extends StatefulWidget {
     required this.commentCount,
     required this.likeCount,
     required this.isLikedByUser,
+    required this.createdAt,
     super.key,
   });
 
@@ -24,6 +26,7 @@ class ThreadPost extends StatefulWidget {
   final int commentCount;
   final int likeCount;
   final bool isLikedByUser;
+  final DateTime createdAt;
 
   @override
   State<ThreadPost> createState() => _ThreadPostState();
@@ -132,7 +135,7 @@ extension _WidgetFactories on _ThreadPostState {
 
   // Post Time Difference
   Widget getPostTimeDifference() {
-    return Text('1h', style: _Styles.getStatsTextStyle());
+    return Text(widget.createdAt.getTimeDifference(), style: _Styles.getStatsTextStyle());
   }
 
   // Get More Button

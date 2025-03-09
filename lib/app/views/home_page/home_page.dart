@@ -91,6 +91,7 @@ extension _WidgetFactories on _HomePageState {
               commentCount: posts[index].commentCount ?? 0,
               likeCount: posts[index].likeCount ?? 0,
               isLikedByUser: posts[index].isLikedByUser ?? false,
+              createdAt: posts[index].createdAt ?? DateTime.now(),
             ),
             Divider(color: ColorManager.dividerColor),
           ],
